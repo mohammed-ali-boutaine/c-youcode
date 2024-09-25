@@ -26,7 +26,12 @@ int main(){
     scanf(" %s",&email);
 
 
-    printf("\n\nvotre donne: %s %s ,%d ans %c \n email: %s",prenom,nom,age,sexe,email);
+    printf("\n-------------------------------- \n");
 
+    printf("votre prenom: %s",prenom);
+    printf("votre nom: %s",nom);
+    printf("votre age: %d\n",age);
+    printf("votre sexe: %c\n",sexe);
+    printf("votre mail: %s\n",email);
     return 0;
 }
