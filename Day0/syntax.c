@@ -4,16 +4,18 @@ int main() {
 
     // Data types:
     int num = 20;
-    float pi = 3.141592;
+    float pi = 3.141592;//
+    double gpe = 3.5;//
     char littre = 'A';
     char name[50] = "Mohammed Ali Boutaine";  // Assign an initial name
 
     // Output initial values:
     printf("Initial values:\n");
-    printf("Integer: %d\n", num);
-    printf("Float: %.6f\n", pi);
-    printf("Character: %c\n", littre);
-    printf("Name: %s\n\n", name);
+    printf("Integer: %d\n", num);// d decimal
+    printf("Float: %.6f\n", pi);// float
+    printf("gpe: %lf\n", gpe);// long foalt
+    printf("Character: %c\n", littre);//caracter
+    printf("Name: %s\n\n", name);//string
 
     // Get user input:
     printf("Enter a new integer: ");
@@ -37,8 +39,15 @@ int main() {
     printf("Integer: %d , Float: %.6f \n", num,pi);
     printf("Character: %c\n", littre);
     printf("Name: %s\n", name);
-
-
+    /*
+    escape sequence =  cha
+        \n : new line
+        \t : tab
+        \b : backspace
+        \" : double quote
+        \' : single quote
+        \\ : backslash
+    */
 
     //  ==================================================
 
@@ -49,6 +58,9 @@ int main() {
     printf("%d", x + y + z);  // 150
 
     // =================================================
+
+    // constant:
+    const float pi = 3.1415 ;
 
     // basic data type:
 /*
@@ -75,20 +87,94 @@ int main() {
     char	1 byte
 */
 
+    // math function:
+    // #include <math.h>
+
+    // Square root of 16
+    double sqrt_result = sqrt(16.0);
+    printf("Square root of 16: %.2f\n", sqrt_result);
+
+    // 2 raised to the power of 3
+    double pow_result = pow(2.0, 3.0);
+    printf("2 raised to the power of 3: %.2f\n", pow_result);
+
+    // Absolute value of -5 (integer)
+    int abs_result = abs(-5);
+    printf("Absolute value of -5: %d\n", abs_result);
+
+    // Absolute value of -5.5 (floating-point)
+    double fabs_result = fabs(-5.5);
+    printf("Absolute value of -5.5: %.2f\n", fabs_result);
+
+    // Ceiling of 4.3 (smallest integer >= 4.3)
+    double ceil_result = ceil(4.3);
+    printf("Ceiling of 4.3: %.2f\n", ceil_result);
+
+    // Floor of 4.7 (largest integer <= 4.7)
+    double floor_result = floor(4.7);
+    printf("Floor of 4.7: %.2f\n", floor_result);
+
+    // Remainder of 5.3 divided by 2.0
+    double fmod_result = fmod(5.3, 2.0);
+    printf("Remainder of 5.3 divided by 2.0: %.2f\n", fmod_result);
+
+
+{
+
+      /*
+    arithmetic operators:
+    + : addition
+    - : subtraction
+    * : multiplication
+    / : division
+    % : modulus
+
+    relational operators:
+    == : equal to
+    != : not equal to
+    > : greater than
+    < : less than
+    >= : greater than or equal to
+    <= : less than or equal to
+
+    logical operators:  add logic table
+    && : and
+    || : or
+    ! : not
+
+    assignment operators:
+    = : assignment
+    += : addition assignment
+    -= : subtraction assignment
+    *= : multiplication assignment
+    /= : division assignment
+    %= : modulus assignment
+
+    increment and decrement operators:
+    ++ : increment
+    -- : decrement
+   */
+
+}
     // short hand if:
     // variable = (condition) ? expressionTrue : expressionFalse;
     (time < 18) ? printf("Good day.") : printf("Good evening.");
 
+    int getMax(int x , int y){
+        return (x>y) ? x : y ;
+    }
+
+
     // switch syntax:
     switch (expression) {
-  case x:
-    // code block
-    break;
-  case y:
-    // code block
-    break;
-  default:
-    // code block
+        case x:
+            // code block
+            break;
+        case y:
+            // code block
+            break;
+        default:
+            // code block
     }
 
     //### while syntax:
