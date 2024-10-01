@@ -64,8 +64,6 @@ for (int i = 0; i < len; i++) {
     printf("| Name: %-12s | Age: %d |\n", students[i].name, students[i].age);
     printf("--------------------------------\n");
 }
-// printf("-----------------------\n");
-
 
 }
 
