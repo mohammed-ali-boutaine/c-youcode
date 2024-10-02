@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-#include <string.h>  // Pour la fonction strcpy
+#include <string.h>  
 
 
 void challenge1(){
@@ -78,13 +78,15 @@ void challenge5(){
     }Livre;
 
     Livre addLivre(char t[25],char a[25],char anne[15]){
+        
         Livre l1;
 
-strcpy(l1.titre, t);
+        strcpy(l1.titre, t);
         strcpy(l1.auteur, a);
-        strcpy(l1.annee, anne);        return l1;
+        strcpy(l1.annee, anne);
+        
+        return l1;
 
-        // printf("titre:%s , auteur:%s , anne: %s",l1.titre,l1.auteur,l1.annee);
 
 
     }
