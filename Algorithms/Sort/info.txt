@@ -1,0 +1,13 @@
+1- bubble sort
+2-insertion sort
+3-selection sort
+4- quick sort
+
+
+merge sort
+radix sort
+shell sort
+tim sort
+msd radix sort
+cocktail shaker
+bogo 

@@ -12,7 +12,7 @@ int main(){
     // print element
     printf("%d", myNumbers[0]);
 
-    // cange data
+    // change data
     myNumbers[0] = 33;
 
     int arr[] = {1,42,1,421,123,53,34,-3};
@@ -27,10 +27,6 @@ int main(){
     //Get Array Size or Length
     printf("%lu", sizeof(myNumbers)); // Prints 20
     // the sizeof operator returns the size of a type in bytes.
-
-    // to get the length
-    int length = sizeof(myNumbers) / sizeof(myNumbers[0]);
-
 
   // example:
   // An array storing different ages

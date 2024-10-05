@@ -99,21 +99,22 @@ int statutSize = sizeof(statut) / sizeof(statut[0]);
 
 
 int main(){
-        system("cls");// clear terminal
+
+    system("cls");// clear terminal
 
 
     // array of reservation
     Reservation reservationsDefaut[10] = {
-        {0, "bou", "mohammed", "0624240219", 19, "annule", {2022, 2, 22}},
-        {1, "bou", "mohammed", "0624240219", 11, "valide", {2022, 2, 22}},
-        {2, "azo", "mohammed", "0624240219", 45, "valide", {2022, 2, 22}},
-        {3, "bo4", "mohammed", "0624240219", 20, "annule", {2022, 2, 22}},
-        {4, "bo5", "mohammed", "0624240219", 70, "valide", {2022, 2, 22}},
-        {5, "bo6", "mohammed", "0624240219", 20, "valide", {2022, 2, 22}},
-        {6, "bou7", "mohammed", "0624240219", 24, "annule", {2022, 2, 22}},
+        {0, "bou", "mohammed ali", "0624240219", 19, "annule", {2022, 2, 22}},
+        {1, "azo", "hassan", "0624240219", 11, "valide", {2022, 2, 22}},
+        {2, "azo", "yasmine", "0624240219", 45, "valide", {2022, 2, 22}},
+        {3, "ben jlol", "jalal", "0624240219", 20, "annule", {2022, 2, 22}},
+        {4, "ben taleb", "bilal", "0624240219", 70, "valide", {2022, 2, 22}},
+        {5, "azo", "mohammed", "0624240219", 20, "valide", {2022, 2, 22}},
+        {6, "zher", "soulaiman", "0624240219", 24, "annule", {2022, 2, 22}},
         {7, "azo", "mohammed", "0624240219", 22, "reporte", {2022, 2, 22}},
-        {8, "bo9", "mohammed", "0624240219", 20, "traite", {2022, 2, 22}},
-        {9, "b0", "mohammed", "0624240219", 30, "traite", {2022, 2, 22}}
+        {8, "bahri", "morad", "0624240219", 20, "traite", {2022, 2, 22}},
+        {9, "ben taleb", "rachid", "0624240219", 30, "traite", {2022, 2, 22}}
     };
 
     for(int i = 0; i < 10; i++) {
@@ -136,6 +137,7 @@ int main(){
             printf("Entrée invalide, veuillez entrer un nombre.\n");
             continue;
         }
+
         system("cls");
 
         // Handle user choice
@@ -251,6 +253,11 @@ void updateReservation() {
     printf("Enter the reservation ID to update: ");
     scanf("%d", &idToUpdate);
 
+    if(idToUpdate < 0 || idToUpdate > globalID){
+        printf("ID invalid\n");
+        return;
+    }
+
     int index = findIndexByID(idToUpdate);  // Use the findIndexByID function
 
     if (index == -1) {
@@ -273,14 +280,17 @@ void updateReservation() {
     getNewElement("Telephone", resToUpdate.tel);
 
     // age
+
+    // Update 'age' as an integer
     printf("Enter Age (or press Enter to keep current): ");
     char input[50];
     fgets(input, sizeof(input), stdin);
     if (input[0] != '\n') {
-        resToUpdate.age = atoi(input); // search about atoi 
+        int newAge;
+        sscanf(input, "%d", &newAge);  // Convert input string to integer
+        resToUpdate.age = newAge;
     }
 
-    // status
     printf("Choose a new statut:\n");
     for (int i = 0; i < statutSize; i++) {
         printf("%d. %s\n", i + 1, statut[i]);
@@ -288,35 +298,21 @@ void updateReservation() {
     int statutChoice;
     printf("Enter your choice (1-%d): ", statutSize);
     scanf("%d", &statutChoice);
-    getchar();  
+    getchar();  // Consume newline
     if (statutChoice >= 1 && statutChoice <= statutSize) {
         strcpy(resToUpdate.statut, statut[statutChoice - 1]);
     } else {
         printf("Invalid choice, keeping current status.\n");
     }
 
-    // date (not finished)
-    int year, month, day;
-    printf("Enter new year (or press Enter to keep current): ");
+    // Update 'date'
+    printf("Enter new date in format YYYY-MM-DD (or press Enter to keep current): ");
     fgets(input, sizeof(input), stdin);
     if (input[0] != '\n') {
-        sscanf(input, "%d", &year);
-        resToUpdate.date.year = year;
+        sscanf(input, "%d-%d-%d", &resToUpdate.date.year, &resToUpdate.date.month, &resToUpdate.date.day);
     }
 
-    printf("Enter new month (or press Enter to keep current): ");
-    fgets(input, sizeof(input), stdin);
-    if (input[0] != '\n') {
-        sscanf(input, "%d", &month);
-        resToUpdate.date.month = month;
-    }
-
-    printf("Enter new day (or press Enter to keep current): ");
-    fgets(input, sizeof(input), stdin);
-    if (input[0] != '\n') {
-        sscanf(input, "%d", &day);
-        resToUpdate.date.day = day;
-    }
+    reservations[index] = resToUpdate;
 
     printf("Reservation updated successfully!\n");
 }
@@ -334,22 +330,27 @@ void deleteReservation(){
         printf("Enter the reservation ID to delete: ");
         scanf("%d", &idToDelete);
 
+        if(idToDelete<0 || idToDelete >globalID){
+        printf("ID invalid\n");
+        return;
+    }
+
         int index = findIndexByID(idToDelete);
 
         if(index != -1 ){
 
-             printf("Reservation Details:\n");
-             showReservation(reservations[index]);
+            printf("Reservation Details:\n");
+            showReservation(reservations[index]);
 
-    char confirm[4];  
-    printf("Are you sure you want to delete this reservation? (yes/no): ");
-    getchar();
-    fgets(confirm, sizeof(confirm), stdin);
+            char confirm[4];  
+            printf("Are you sure you want to delete this reservation? (yes/no): ");
+            getchar();
+            fgets(confirm, sizeof(confirm), stdin);
     
-    if (strcmp(confirm, "yes") != 0) { 
-        printf("Deletion cancelled.\n");
-        return;
-    }
+            if (strcmp(confirm, "yes") != 0) { 
+                printf("Deletion cancelled.\n");
+                return;
+            }
 
 
             for(int j = index ; j < length-1 ; j++){
@@ -358,7 +359,7 @@ void deleteReservation(){
 
             length--;
 
-        printf("Reservation with ID %d has been deleted successfully.\n", idToDelete);
+            printf("Reservation with ID %d has been deleted successfully.\n", idToDelete);
             return;
 
         }
@@ -369,7 +370,7 @@ void deleteReservation(){
 
 void showReservations(){
 
-    printf("%d\n",length);
+    // printf("%d\n",length);
 
     if (length == 0) {
         printf("No reservation to display.\n");
@@ -536,8 +537,16 @@ void searchByNom() {
         nom[len - 1] = '\0';
     }
 
+     if (strlen(nom) == 0) {
+        printf("\nAucun nom n'a été saisi.\n");
+        return;
+    }
+
+
     // Binary search
     if (strcmp(sortedBy, "nom") == 0) {
+
+
         int low = 0;
         int high = length - 1;
 
@@ -549,7 +558,7 @@ void searchByNom() {
             if (cmp == 0) {
                 namesIndex[index] = mid;
                 index++;
-                // Look for other occurrences (to handle duplicates)
+
                 int left = mid - 1;
                 while (left >= 0 && strcmp(reservations[left].nom, nom) == 0) {
                     namesIndex[index] = left;
@@ -562,14 +571,18 @@ void searchByNom() {
                     index++;
                     right++;
                 }
-                break; // Exit the loop once found
+
+                break; 
             }
-            if (cmp < 0) {
+
+            if (cmp < 0) {// if nonamem greater than element in mid change low
                 low = mid + 1; 
-            } else {
+            } else {// if nom smaller than element in mid change hight
                 high = mid - 1; 
             }
         }
+
+
     } else { // Linear search
         for (int i = 0; i < length; i++) {
             if (strcmp(reservations[i].nom, nom) == 0) {
@@ -579,7 +592,7 @@ void searchByNom() {
         }
     }
 
-    // Print found names
+    // Print names
     if (index > 0) {
         printf("\nReservations trouvees :\n");
         for (int i = 0; i < index; i++) {

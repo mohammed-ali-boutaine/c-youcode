@@ -69,10 +69,11 @@ int main() {
         char * endptr;
         option = strtol(input, & endptr, 10);
 
-        if ( * endptr != '\0') {
+        if (*endptr != '\0' || endptr == input) {
             printf("Input invalide, veuillez entrer un nombre.\n");
             continue;
         }
+
 
         switch (option) {
         case 0:

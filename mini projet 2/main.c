@@ -178,9 +178,6 @@ void supprimerContact(){
 
         printf("cette contact(%s) ne exis pas\n",nom);
 
-
-
-
 };
 void showContacts(){
 
