@@ -4,6 +4,9 @@
 int main() {
 
 
+{
+    // Écrivez un programme C qui demande un nombre entier n et affiche les n premiers nombres pairs. Par exemple, pour n = 4, affichez : 2, 4, 6, 8.
+}
     int n;
     do{ 
     printf("entrez un nomber: ");
